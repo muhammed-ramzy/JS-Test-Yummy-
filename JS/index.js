@@ -3,6 +3,12 @@ let categories = $("#categories-section")
 let area = $("#area-section")
 let ingredients = $("#ingredients-section")
 
+// Search input
+let mealNameInput = $("#meal-name-input")
+let mealFLInput = $("#meal-fl-input")
+
+console.log(mealNameInput);
+
 let navListItems = $(".nav-list li")
 
 
@@ -26,10 +32,19 @@ navListItems.on("click", (eventInfo) =>
             $(`#${navListItems.eq(i).attr("id")}-section`).addClass("d-none")
         }
     }
+
+    ToggleSideBar();
 })
+
+
 
 // side bar toggle
 $("#burger-icon").on("click", () => {
+    ToggleSideBar()
+})
+
+function ToggleSideBar()
+{
     if ($("aside").css("left") == '-259.2px') {
         $("aside").animate({ "left": "0rem" }, () => {
             $("#search").animate({ "top": "0px" }, 500)
@@ -52,8 +67,7 @@ $("#burger-icon").on("click", () => {
         $("#burger-icon").addClass("fa-align-justify")
         $("#burger-icon").removeClass("fa-x")
     }
-})
-
+}
 
 //The main API
 async function getAllMeals()
@@ -80,8 +94,6 @@ async function getArea()
 {
     let fetchedCategories = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
     let response = await fetchedCategories.json();
-
-    console.log(response);
     
     let blackBox = ``;
     for (let i = 0; i < response.meals.length; i++) {
@@ -99,10 +111,6 @@ async function getIngredients()
 {
     let fetchedIngredients = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list");
     let response = await fetchedIngredients.json();
-
-    console.log(response);
-    console.log(response.meals.length);
-    console.log(response.meals[0].strDescription);
     
     let blackBox = ``;
     for (let i = 0; i < 20; i++) {
@@ -122,8 +130,6 @@ async function getCategories()
 {
     let fetchedCategories = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
     let response = await fetchedCategories.json();
-
-    console.log(response);
     
     let blackBox = ``;
     for (let i = 0; i < response.categories.length; i++) {
