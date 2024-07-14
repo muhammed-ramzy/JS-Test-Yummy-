@@ -241,10 +241,37 @@ async function getIngredients() {
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
                 <div
-                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    class="card ingredient-card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center" data-name="${response.meals[i].strIngredient}">
                     <i class="fa-solid fa-drumstick-bite fa-4x"></i>
                     <h3>${response.meals[i].strIngredient}</h3>
                     <p>${response.meals[i].strDescription.split(" ").slice(0, 20).join(" ")}</p>
+                </div>
+            </div>`;
+
+    }
+    ingredients.html(blackBox)
+
+    $(".ingredient-card").on("click", (eventInfo) => {
+        // getIngredientsMeals($(eventInfo.currentTarget).attr("data-name").lowerCase());
+        getIngredientsMeals($(eventInfo.currentTarget).attr("data-name").toLowerCase().replaceAll(" ", "-"));
+    // console.log( $(eventInfo.currentTarget).attr("data-name"));
+    })
+}
+async function getIngredientsMeals(ingredientName) {
+    let fetchedIngredients = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientName}`);
+    let response = await fetchedIngredients.json();
+
+    let length = response.meals.length <= 20 ? response.meals.length : 20;
+
+    let blackBox = ``;
+    for (let i = 0; i < length; i++) {
+        blackBox += `<div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="${response.meals[i].strMealThumb
+            }" class="h-100" alt="">
+                    <div class="layer position-absolute d-flex align-items-center">
+                        <h3 class="text-black m-0">${response.meals[i].strMeal}</h3>
+                    </div>
                 </div>
             </div>`;
 
@@ -313,3 +340,6 @@ getAllMeals();
 getCategories();
 getArea();
 getIngredients()
+
+
+
