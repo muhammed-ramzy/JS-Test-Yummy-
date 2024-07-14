@@ -216,7 +216,7 @@ input::placeholder
     bottom: 0;
     right: 0;
     left: 0;
-    transform: translateY(100%);
+    transform: translateY(105%);
     transition: all 0.5s;
 }
 
