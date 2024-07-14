@@ -1,20 +1,22 @@
+//Sections
 let meals = $("#meals-section")
 let categories = $("#categories-section")
 let area = $("#area-section")
 let ingredients = $("#ingredients-section")
 let searchedItems = $("#searched-items-section")
 
+let userPassword = $("#userPassword")
+let userRepassword = $("#userRepassword")
+let contactBtn = $(".contact-btn")
+
+// console.log(userName, userEmail, userPhone, userAge, userPassword, userRepassword);
+
 // Search input
 let mealFLInput = $("#meal-fl-input")
 let mealNameInput = $("#meal-name-input")
 
-
-
-// console.log(mealFLInput);
-
+//Navigation items
 let navListItems = $(".nav-list li")
-
-
 
 //navigating using the navigation list
 navListItems.on("click", (eventInfo) => {
@@ -47,11 +49,10 @@ navListItems.on("click", (eventInfo) => {
     ToggleSideBar();
 })
 
-//search input by name listener
+//search inputs listeners
 mealNameInput.on("input", () => {
     getSearchedMealByName(mealNameInput.val());
 })
-
 mealFLInput.on("input", () => {
     let value = ``;
 
@@ -65,11 +66,54 @@ mealFLInput.on("input", () => {
     getSearchedMealByFL(mealFLInput.val());
 })
 
+//Contact-Us-Listeners
+$(".contact-us-input").on("input", (eventInfo) => {
+    validateInput(eventInfo.currentTarget)
+    // console.log(eventInfo.currentTarget.value);
+})
+
+userRepassword.on("input", () => {
+    if (userPassword.val() != userRepassword.val()) {
+        userRepassword.next().removeClass("d-none")
+    }
+    else
+    {
+        userRepassword.next().addClass("d-none")
+    }
+})
+
+
 
 //side bar toggle
 $("#burger-icon").on("click", () => {
     ToggleSideBar()
 })
+
+//regex
+function validateInput(element) {
+    var regex = {
+        userName: /^[A-Za-z]+$/,
+        userEmail: /^[\w]+@[a-zA-Z]+\.com$/i,
+        userPhone: /^(\+20|0020)?[ -]?01[0125][ -]?\d{8}$/,
+        userAge: /^(1[01][0-9]|120|[1-9][0-9]?)$/,
+        userPassword: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+    }
+
+    //validating the input
+    console.log(element.id);
+    console.log(element.value);
+    if (regex[element.id].test(element.value)) {
+
+        $(element).next().addClass("d-none")
+        return true;
+    }
+    else {
+
+        $(element).next().removeClass("d-none")
+
+        return false;
+    }
+}
 
 function ToggleSideBar() {
     if ($("aside").css("left") == '-259.2px') {
@@ -145,10 +189,10 @@ async function getSearchedMealByFL(char = '') {
 
             }
 
-            searchedItems.html(blackBox)
+            userName.html(blackBox)
         }
         else {
-            searchedItems.html("")
+            userName.html("")
         }
 
     }
@@ -226,7 +270,7 @@ async function getArea() {
     }
     area.html(blackBox)
 
-    
+
     $(".area-card").on("click", (eventInfo) => {
         getAreaMeals($(eventInfo.currentTarget).attr("data-name"));
     })
@@ -254,7 +298,7 @@ async function getIngredients() {
     $(".ingredient-card").on("click", (eventInfo) => {
         // getIngredientsMeals($(eventInfo.currentTarget).attr("data-name").lowerCase());
         getIngredientsMeals($(eventInfo.currentTarget).attr("data-name").toLowerCase().replaceAll(" ", "-"));
-    // console.log( $(eventInfo.currentTarget).attr("data-name"));
+        // console.log( $(eventInfo.currentTarget).attr("data-name"));
     })
 }
 async function getIngredientsMeals(ingredientName) {
