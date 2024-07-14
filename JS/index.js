@@ -155,8 +155,6 @@ async function getAllMeals() {
 
     let length = response.meals.length <= 20 ? response.meals.length : 20;
 
-    console.log(response);
-
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
