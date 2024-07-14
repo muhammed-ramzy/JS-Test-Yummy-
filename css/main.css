@@ -231,6 +231,7 @@ input::placeholder
 aside
 {
     left: -16.2rem;
+    z-index: 999;
 }
 
 aside .white-side-nav{
@@ -263,3 +264,18 @@ aside i
     color: white;
 }
 /* ================== End search Classes ================== */
+
+/* ================== Start Loading Classes ================== */
+.loading-screen{
+    z-index: 900;
+    display: flex;
+    color: #ffffff;
+}
+
+.inner-loading-screen{
+    position: absolute;
+    z-index: 9;
+    background-color: #0D0D0D;
+    display: flex;
+}
+/* ================== End Loading Classes ================== */

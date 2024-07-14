@@ -16,6 +16,8 @@ let userPassword = $("#userPassword")
 let userRepassword = $("#userRepassword")
 let contactBtn = $(".contact-btn")
 
+//Loading Screen
+let loadingScreen = $(".loading-screen")
 
 // Search input
 let mealFLInput = $("#meal-fl-input")
@@ -44,6 +46,7 @@ navListItems.on("click", (eventInfo) => {
     //removeClass d-none from the result section
     $(sectionId).removeClass("d-none");
     $("#meals-section").addClass("d-none");
+    mealRecipe.addClass("d-none");
 
     //addClass d-none to the rest sections
     for (let i = 0; i < navListItems.length; i++) {
@@ -150,6 +153,8 @@ function ToggleSideBar() {
 
 //The main API
 async function getAllMeals() {
+    loadingScreen.removeClass("d-none");
+
     let fetchedMeals = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=`);
     let response = await fetchedMeals.json();
 
@@ -170,6 +175,9 @@ async function getAllMeals() {
     }
     meals.html(blackBox)
 
+    loadingScreen.addClass("d-none");
+
+
     $(".meals-card").on("click", (eventInfo) => {
         getMealDetails($(eventInfo.currentTarget).attr("data-id"));
         console.log($(eventInfo.currentTarget).attr("data-id"));
@@ -179,12 +187,12 @@ async function getAllMeals() {
     })
 }
 async function getMealDetails(id) {
+
+    loadingScreen.removeClass("d-none");
+
     let fetchedMeals = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
     let response = await fetchedMeals.json();
 
-    // let length = response.meals.length <= 20 ? response.meals.length : 20;
-
-    console.log(response);
 
     let blackBox = ``;
     let blackBox1 = ``;
@@ -243,8 +251,12 @@ async function getMealDetails(id) {
             </div>`
 
     mealRecipe.html(blackBox)
+
+    loadingScreen.addClass("d-none");
 }
 async function getSearchedMealByFL(char = '') {
+    loadingScreen.removeClass("d-none");
+
     char == '' ? char = 'a' : char;
 
     let fetchedMeals = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${char}`);
@@ -284,8 +296,12 @@ async function getSearchedMealByFL(char = '') {
         mealRecipe.removeClass("d-none");
     })
 
+    loadingScreen.addClass("d-none");
+
 }
 async function getSearchedMealByName(term = '') {
+    loadingScreen.removeClass("d-none");
+
     let fetchedMeals = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`);
     let response = await fetchedMeals.json();
     let blackBox = ``;
@@ -325,8 +341,12 @@ async function getSearchedMealByName(term = '') {
         mealRecipe.removeClass("d-none");
     })
 
+    loadingScreen.addClass("d-none");
+
 }
 async function getAreaMeals(areaName) {
+    loadingScreen.removeClass("d-none");
+
     let fetchedCategories = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areaName}`);
     let response = await fetchedCategories.json();
 
@@ -354,8 +374,12 @@ async function getAreaMeals(areaName) {
         area.addClass("d-none");
         mealRecipe.removeClass("d-none");
     })
+
+    loadingScreen.addClass("d-none");
 }
 async function getArea() {
+    loadingScreen.removeClass("d-none");
+
     let fetchedCategories = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
     let response = await fetchedCategories.json();
 
@@ -377,8 +401,12 @@ async function getArea() {
     $(".area-card").on("click", (eventInfo) => {
         getAreaMeals($(eventInfo.currentTarget).attr("data-name"));
     })
+
+    loadingScreen.addClass("d-none");
 }
 async function getIngredients() {
+    loadingScreen.removeClass("d-none");
+
     let fetchedIngredients = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list");
     let response = await fetchedIngredients.json();
 
@@ -401,12 +429,24 @@ async function getIngredients() {
     $(".ingredient-card").on("click", (eventInfo) => {
         getIngredientsMeals($(eventInfo.currentTarget).attr("data-name").toLowerCase().replaceAll(" ", "-"));
     })
+
+    loadingScreen.addClass("d-none");
 }
 async function getIngredientsMeals(ingredientName) {
+    loadingScreen.removeClass("d-none");
+
     let fetchedIngredients = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientName}`);
     let response = await fetchedIngredients.json();
 
-    let length = response.meals.length <= 20 ? response.meals.length : 20;
+    let length;
+    if (response.meals != null) {
+        length = response.meals.length <= 20 ? response.meals.length : 20;
+    }
+    else
+    {
+        length = 0;
+    }
+
 
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
@@ -430,8 +470,12 @@ async function getIngredientsMeals(ingredientName) {
         ingredients.addClass("d-none");
         mealRecipe.removeClass("d-none");
     })
+
+    loadingScreen.addClass("d-none");
 }
 async function getCategoryMeal(category) {
+    loadingScreen.removeClass("d-none");
+
     let fetchedCategories = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
     let response = await fetchedCategories.json();
 
@@ -461,8 +505,11 @@ async function getCategoryMeal(category) {
         mealRecipe.removeClass("d-none");
     })
 
+    loadingScreen.addClass("d-none");
 }
 async function getCategories() {
+    loadingScreen.removeClass("d-none");
+
     let fetchedCategories = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
     let response = await fetchedCategories.json();
 
@@ -488,14 +535,14 @@ async function getCategories() {
         getCategoryMeal($(eventInfo.currentTarget).attr("data-name"));
     })
 
-
+    loadingScreen.addClass("d-none");
 }
 
 
 getAllMeals();
-getCategories();
-getArea();
-getIngredients()
+// getCategories();
+// getArea();
+// getIngredients()
 
 
 

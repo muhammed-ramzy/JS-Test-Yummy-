@@ -19,8 +19,14 @@
 </head>
 
 <body class="main-bg-color">
+
+    <div
+        class="loading-screen position-fixed top-0 start-0 end-0 bottom-0 bg-black justify-content-center align-items-center d-none">
+        <i class="fa fa-spinner fa-spin fa-5x"></i>
+    </div>
+
     <!-- Side Navigation -->
-    <aside class="position-fixed top-0 d-flex z-3 ">
+    <aside class="position-fixed top-0 d-flex">
         <div class="black-side-nav dvh-100 p-4 main-bg-color text-white d-flex flex-column justify-content-between">
             <ul class="list-unstyled nav-list overflow-hidden">
                 <li class="py-2 position-relative" id="search">Search</li>
@@ -52,7 +58,7 @@
         </div>
 
     </aside>
-
+    
     <main class="main-bg-color container">
 
         <!-- Search section -->
@@ -60,16 +66,18 @@
             <!-- Search form -->
             <div class="row search-form mb-4">
                 <div class="col-md-6">
-                    <input type="text" class="form-control bg-transparent" id="meal-name-input" placeholder="Search By Name">
+                    <input type="text" class="form-control bg-transparent" id="meal-name-input"
+                        placeholder="Search By Name">
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control bg-transparent " id="meal-fl-input" placeholder="Search By First Letter">
+                    <input type="text" class="form-control bg-transparent " id="meal-fl-input"
+                        placeholder="Search By First Letter">
                 </div>
             </div>
 
             <!-- Searched items -->
             <section class="row py-5 g-4" id="searched-items-section">
-                
+
             </section>
         </section>
 
@@ -79,23 +87,28 @@
             <!-- Search form -->
             <div class="row px-5 g-4 mb-4 contact-form ">
                 <div class="col-md-6">
-                    <input type="text" class="form-control contact-us-input mb-2" placeholder="Enter Your Name" id="userName">
+                    <input type="text" class="form-control contact-us-input mb-2" placeholder="Enter Your Name"
+                        id="userName">
                     <div class="alert alert-danger text-center d-none">Special characters and numbers not allowed</div>
                 </div>
                 <div class="col-md-6">
-                    <input type="email" class="form-control contact-us-input mb-2 " placeholder="Enter Your Email" id="userEmail">
+                    <input type="email" class="form-control contact-us-input mb-2 " placeholder="Enter Your Email"
+                        id="userEmail">
                     <div class="alert alert-danger text-center d-none">Email not valid *exemple@yyy.zzz</div>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control contact-us-input mb-2 " placeholder="Enter Your phone" id="userPhone">
+                    <input type="text" class="form-control contact-us-input mb-2 " placeholder="Enter Your phone"
+                        id="userPhone">
                     <div class="alert alert-danger text-center d-none">Enter Valid Phone Number</div>
                 </div>
                 <div class="col-md-6">
-                    <input type="number" class="form-control contact-us-input mb-2 " placeholder="Enter Your Age" id="userAge">
+                    <input type="number" class="form-control contact-us-input mb-2 " placeholder="Enter Your Age"
+                        id="userAge">
                     <div class="alert alert-danger text-center d-none">Enter valid age</div>
                 </div>
                 <div class="col-md-6">
-                    <input type="password" class="form-control contact-us-input mb-2 " placeholder="Enter Your Password" id="userPassword">
+                    <input type="password" class="form-control contact-us-input mb-2 " placeholder="Enter Your Password"
+                        id="userPassword">
                     <div class="alert alert-danger text-center d-none">Enter valid password *Minimum eight characters,
                         at least one letter and one number:*</div>
                 </div>
@@ -110,12 +123,12 @@
 
         <!-- Ingredients section -->
         <section class="row py-5 g-4 d-none" id="ingredients-section">
-            
+
         </section>
 
         <!-- area section -->
         <section class="row py-5 g-4 d-none" id="area-section">
-            
+
         </section>
 
         <!-- categories section -->
@@ -125,7 +138,7 @@
 
         <!-- Meal Details -->
         <section class="text-white d-none" id="meal-recipe-section">
-            
+
         </section>
 
         <!-- Food list -->
