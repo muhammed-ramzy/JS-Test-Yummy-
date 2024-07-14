@@ -5,6 +5,7 @@ let area = $("#area-section")
 let ingredients = $("#ingredients-section")
 let searchedItems = $("#searched-items-section")
 
+//Contact-us elements
 let userName = $("#userName")
 let userEmail = $("#userEmail")
 let userPhone = $("#userPhone")
@@ -12,8 +13,7 @@ let userAge = $("#userAge")
 let userPassword = $("#userPassword")
 let userRepassword = $("#userRepassword")
 let contactBtn = $(".contact-btn")
-console.log(contactBtn);
-// console.log(userName, userEmail, userPhone, userAge, userPassword, userRepassword);
+
 
 // Search input
 let mealFLInput = $("#meal-fl-input")
@@ -64,7 +64,6 @@ mealFLInput.on("input", () => {
     if (mealFLInput.val().length > 1) {
         value = mealFLInput.val()[0];
         mealFLInput.val(value)
-        value = mealFLInput.val()
     }
 
     getSearchedMealByFL(mealFLInput.val());
@@ -73,7 +72,6 @@ mealFLInput.on("input", () => {
 //Contact-Us-Listeners
 $(".contact-us-input").on("input", (eventInfo) => {
     validateInput(eventInfo.currentTarget)
-    // console.log(eventInfo.currentTarget.value);
 })
 
 userRepassword.on("input", () => {
@@ -155,10 +153,12 @@ async function getAllMeals() {
 
     let length = response.meals.length <= 20 ? response.meals.length : 20;
 
+    console.log(response);
+
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden">
+                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
             }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -174,33 +174,30 @@ async function getSearchedMealByFL(char = '') {
     char == '' ? char = 'a' : char;
 
     let fetchedMeals = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${char}`);
-    console.log(fetchedMeals);
     let response = await fetchedMeals.json();
     let blackBox = ``;
     let length;
 
     if (fetchedMeals.ok) {
         if (response.meals != null && response.meals.hasOwnProperty('length')) {
-
+            
             length = response.meals.length <= 20 ? response.meals.length : 20;
-
+            
             for (let i = 0; i < length; i++) {
                 blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden">
-                    <img src="${response.meals[i].strMealThumb
-                    }" class="h-100" alt="">
-                    <div class="layer position-absolute d-flex align-items-center">
-                        <h3 class="text-black m-0">${response.meals[i].strMeal}</h3>
-                    </div>
+                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
+                <img src="${response.meals[i].strMealThumb
+                }" class="h-100" alt="">
+                <div class="layer position-absolute d-flex align-items-center">
+                <h3 class="text-black m-0">${response.meals[i].strMeal}</h3>
                 </div>
-            </div>`
-
+                </div>
+                </div>`
             }
-
-            userName.html(blackBox)
+            searchedItems.html(blackBox)
         }
         else {
-            userName.html("")
+            searchedItems.html("")
         }
 
     }
@@ -219,7 +216,7 @@ async function getSearchedMealByName(term = '') {
 
             for (let i = 0; i < length; i++) {
                 blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden">
+                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
                     }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -248,7 +245,7 @@ async function getAreaMeals(areaName) {
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden">
+                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
             }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -318,7 +315,7 @@ async function getIngredientsMeals(ingredientName) {
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden">
+                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
             }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -339,7 +336,7 @@ async function getCategoryMeal(category) {
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden">
+                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
             }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -358,9 +355,6 @@ async function getCategoryMeal(category) {
 async function getCategories() {
     let fetchedCategories = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
     let response = await fetchedCategories.json();
-
-    console.log(response);
-
 
     let length = response.categories.length <= 20 ? response.categories.length : 20;
 
