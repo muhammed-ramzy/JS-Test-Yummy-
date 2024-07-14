@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6</title>
+
+    <!-- FontAwesome icons css file -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- Bootstrap css file -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- My Animaition css file -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- My Media Query css file -->
+    <link rel="stylesheet" href="css/media.css">
+    <!-- My Main CSS file -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="main-bg-color">
+    <!-- Side Navigation -->
+    <aside class="position-fixed top-0 d-flex z-3 ">
+        <div class="black-side-nav vh-100 p-4 main-bg-color text-white d-flex flex-column justify-content-between">
+            <ul class="list-unstyled nav-list overflow-hidden">
+                <li class="py-2 position-relative" id="search">Search</li>
+                <li class="py-2 position-relative" id="categories">Categories</li>
+                <li class="py-2 position-relative" id="area">Area</li>
+                <li class="py-2 position-relative" id="ingredients">Ingredients</li>
+                <li class="py-2 position-relative" id="contact-us">Contact Us</li>
+            </ul>
+
+            <div class="footer">
+                <div class="Social-media-icons">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <p>Copyright Â© 2019 All Rights Reserved.</p>
+            </div>
+        </div>
+        <!-- White side nav -->
+        <div
+            class="white-side-nav bg-white vh-100 position-relative  px-2 py-4 d-flex flex-wrap flex-column justify-content-between align-items-center text-black">
+            <img src="images/logo.png" class="img-fluid" alt="">
+            <i class="fa-solid open-close-icon fa-align-justify fa-2x" id="burger-icon"></i>
+
+            <div class="web-icons">
+                <i class="fa-solid fa-globe d-block"></i>
+                <i class="fa-solid fa-share-nodes"></i>
+            </div>
+        </div>
+
+    </aside>
+
+    <main class="main-bg-color container">
+
+        <!-- Search section -->
+        <section class="py-4 d-none" id="search-section">
+            <!-- Search form -->
+            <div class="row search-form mb-4">
+                <div class="col-md-6">
+                    <input type="text" class="form-control bg-transparent" placeholder="Search By Name">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control bg-transparent " placeholder="Search By First Letter">
+                </div>
+            </div>
+
+            <!-- Searched items -->
+            <section class="row py-5 g-4" id="searched-items">
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card position-relative border-0 overflow-hidden">
+                        <img src="images/7.jpg" class="h-100" alt="">
+                        <div class="layer position-absolute d-flex align-items-center">
+                            <h3 class="text-black m-0">Spaghetti</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+
+        <!-- Contact Us section -->
+        <section class="py-4 d-flex flex-column justify-content-center align-items-center vh-100 d-none"
+            id="contact-us-section">
+            <!-- Search form -->
+            <div class="row px-5 g-4 mb-4 contact-form ">
+                <div class="col-md-6">
+                    <input type="text" class="form-control mb-2" placeholder="Enter Your Name">
+                    <div class="alert alert-danger text-center d-none">Special characters and numbers not allowed</div>
+                </div>
+                <div class="col-md-6">
+                    <input type="email" class="form-control mb-2 " placeholder="Enter Your Email">
+                    <div class="alert alert-danger text-center d-none">Email not valid *exemple@yyy.zzz</div>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control mb-2 " placeholder="Enter Your phone">
+                    <div class="alert alert-danger text-center d-none">Enter Valid Phone Number</div>
+                </div>
+                <div class="col-md-6">
+                    <input type="number" class="form-control mb-2 " placeholder="Enter Your Age">
+                    <div class="alert alert-danger text-center d-none">Enter valid age</div>
+                </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control mb-2 " placeholder="Enter Your Password">
+                    <div class="alert alert-danger text-center d-none">Enter valid password *Minimum eight characters,
+                        at least one letter and one number:*</div>
+                </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control mb-2 " placeholder="Repassword">
+                    <div class="alert alert-danger text-center d-none">Enter valid repassword</div>
+                </div>
+
+            </div>
+            <button class="btn btn-outline-danger mx-auto">submit</button>
+        </section>
+
+        <!-- Ingredients section -->
+        <section class="row py-5 g-4 d-none" id="ingredients-section">
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div
+                    class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white text-center">
+                    <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+                    <h3>Chicken</h3>
+                    <p>The chicken is a type of domesticated fowl, a subspecies of the red junglefowl (Gallus gallus).
+                        It is one of</p>
+                </div>
+            </div>
+
+
+
+
+        </section>
+
+        <!-- area section -->
+        <section class="row py-5 g-4 d-none" id="area-section">
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                    <i class="fa-solid fa-house-laptop fa-4x"></i>
+                    <h3>America</h3>
+                </div>
+            </div>
+
+
+
+        </section>
+
+        <!-- categories section -->
+        <section class="row py-5 g-4 d-none" id="categories-section">
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="images/7.jpg" class="h-100" alt="">
+                    <div
+                        class="layer position-absolute d-flex flex-wrap  justify-content-center align-content-start text-center ">
+                        <h3 class="text-black mb-3 mt-2">Spaghetti</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+        <!-- Meal Details -->
+        <section class="text-white d-none" id="meal-recipe-section">
+            <div class="row py-5">
+                <div class="col-md-4">
+                    <div class="overflow-hidden rounded-3">
+                        <img src="images/g046bb1663960946.jpg" class="img-fluid" alt="">
+                    </div>
+
+                    <h1 class="h2">Sushi</h1>
+                </div>
+                <div class="col-md-8">
+                    <h2>Instructions</h2>
+                    <p class="mb-2">STEP 1 TO MAKE SUSHI ROLLS: Pat out some rice. Lay a nori sheet on the mat,
+                        shiny-side down. Dip your hands in the vinegared water, then pat handfuls of rice on top in a
+                        1cm thick layer, leaving the furthest edge from you clear. STEP 2 Spread over some Japanese
+                        mayonnaise. Use a spoon to spread out a thin layer of mayonnaise down the middle of the rice.
+                        STEP 3 Add the filling. Get your child to top the mayonnaise with a line of their favourite
+                        fillings – here we’ve used tuna and cucumber. STEP 4 Roll it up. Lift the edge of the mat over
+                        the rice, applying a little pressure to keep everything in a tight roll. STEP 5 Stick down the
+                        sides like a stamp. When you get to the edge without any rice, brush with a little water and
+                        continue to roll into a tight roll. STEP 6 Wrap in cling film. Remove the mat and roll tightly
+                        in cling film before a grown-up cuts the sushi into thick slices, then unravel the cling film.
+                        STEP 7 TO MAKE PRESSED SUSHI: Layer over some smoked salmon. Line a loaf tin with cling film,
+                        then place a thin layer of smoked salmon inside on top of the cling film. STEP 8 Cover with rice
+                        and press down. Press about 3cm of rice over the fish, fold the cling film over and press down
+                        as much as you can, using another tin if you have one. STEP 9 Tip it out like a sandcastle. Turn
+                        block of sushi onto a chopping board. Get a grown-up to cut into fingers, then remove the cling
+                        film. STEP 10 TO MAKE SUSHI BALLS: Choose your topping. Get a small square of cling film and
+                        place a topping, like half a prawn or a small piece of smoked salmon, on it. Use damp hands to
+                        roll walnut-sized balls of rice and place on the topping. STEP 11 Make into tight balls. Bring
+                        the corners of the cling film together and tighten into balls by twisting it up, then unwrap and
+                        serve.</p>
+                    <ul class="list-unstyled fs-3 fw-bolder">
+                        <li>Area : <span>Japanese</span></li>
+                        <li>Category : <span>Seafood</span></li>
+                        <li>Recipes :</li>
+                        <ul class="list-unstyled d-flex flex-wrap fw-normal py-2">
+                            <li class="alert alert-info m-2 p-1 my-fs-lg">300ml Sushi Rice
+                            </li>
+                            <li class="alert alert-info m-2 p-1 my-fs-lg">100ml Rice wine
+
+                            </li>
+                            <li class="alert alert-info m-2 p-1 my-fs-lg">2 tbs Caster Sugar
+
+                            </li>
+                            <li class="alert alert-info m-2 p-1 my-fs-lg">3 tbs Mayonnaise
+                            </li>
+                            <li class="alert alert-info m-2 p-1 my-fs-lg">1 tbs Rice wine
+                            </li>
+                            <li class="alert alert-info m-2 p-1 my-fs-lg">1 tbs Soy Sauce
+                            </li>
+                            <li class="alert alert-info m-2 p-1 my-fs-lg">1 Cucumber
+                            </li>
+                        </ul>
+
+                        <li>Tags:</li>
+                        <ul class="list-unstyled d-flex pt-3">
+                            <li><button class="btn btn-success me-1">Source</button></li>
+                            <li><button class="btn btn-danger">Youtube</button></li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Food list -->
+        <section class="row py-5 g-4" id="meals-section">
+
+        </section>
+
+
+    </main>
+
+    <script src="JS/bootstrap.bundle.min.js"></script>
+    <script src="JS/jquery-3.7.1.min.js"></script>
+    <script src="JS/index.js"></script>
+</body>
+
+</html>
