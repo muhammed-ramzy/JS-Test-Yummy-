@@ -32,7 +32,7 @@ navListItems.on("click", (eventInfo) => {
             break;
     }
 
-    
+
     //removeClass d-none from the result section
     $(sectionId).removeClass("d-none");
     $("#meals-section").addClass("d-none");
@@ -187,6 +187,27 @@ async function getSearchedMealByName(term = '') {
     }
 
 }
+async function getAreaMeals(areaName) {
+    let fetchedCategories = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areaName}`);
+    let response = await fetchedCategories.json();
+
+    let length = response.meals.length <= 20 ? response.meals.length : 20;
+
+    let blackBox = ``;
+    for (let i = 0; i < length; i++) {
+        blackBox += `<div class="col-md-3">
+                <div class="card position-relative border-0 overflow-hidden">
+                    <img src="${response.meals[i].strMealThumb
+            }" class="h-100" alt="">
+                    <div class="layer position-absolute d-flex align-items-center">
+                        <h3 class="text-black m-0">${response.meals[i].strMeal}</h3>
+                    </div>
+                </div>
+            </div>`;
+
+    }
+    area.html(blackBox)
+}
 async function getArea() {
     let fetchedCategories = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
     let response = await fetchedCategories.json();
@@ -196,7 +217,7 @@ async function getArea() {
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card bg-transparent border-0 d-flex justify-content-center align-items-center text-white">
+                <div class="card area-card bg-transparent border-0 d-flex justify-content-center align-items-center text-white" data-name="${response.meals[i].strArea}">
                     <i class="fa-solid fa-house-laptop fa-4x"></i>
                     <h3>${response.meals[i].strArea}</h3>
                 </div>
@@ -204,6 +225,11 @@ async function getArea() {
 
     }
     area.html(blackBox)
+
+    
+    $(".area-card").on("click", (eventInfo) => {
+        getAreaMeals($(eventInfo.currentTarget).attr("data-name"));
+    })
 }
 async function getIngredients() {
     let fetchedIngredients = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list");
