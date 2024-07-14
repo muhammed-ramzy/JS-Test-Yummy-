@@ -3,7 +3,9 @@ let meals = $("#meals-section")
 let categories = $("#categories-section")
 let area = $("#area-section")
 let ingredients = $("#ingredients-section")
+let search = $("#search-section")
 let searchedItems = $("#searched-items-section")
+let mealRecipe = $("#meal-recipe-section")
 
 //Contact-us elements
 let userName = $("#userName")
@@ -158,7 +160,7 @@ async function getAllMeals() {
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
+                <div class="card meals-card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
             }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -169,6 +171,80 @@ async function getAllMeals() {
 
     }
     meals.html(blackBox)
+
+    $(".meals-card").on("click", (eventInfo) => {
+        getMealDetails($(eventInfo.currentTarget).attr("data-id"));
+        console.log($(eventInfo.currentTarget).attr("data-id"));
+
+        meals.addClass("d-none");
+        mealRecipe.removeClass("d-none");
+    })
+}
+async function getMealDetails(id) {
+    let fetchedMeals = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+    let response = await fetchedMeals.json();
+
+    // let length = response.meals.length <= 20 ? response.meals.length : 20;
+
+    console.log(response);
+
+    let blackBox = ``;
+    let blackBox1 = ``;
+    let blackBox2 = ``;
+
+    for (let i = 1; i <= 20; i++) {
+        let measure = `strMeasure${i}`;
+        let ingredient = `strIngredient${i}`;
+        if (response.meals[0][measure] == "" || response.meals[0][measure] == " " || response.meals[0][measure] == null) {
+            break;
+        }
+        else {
+            blackBox1 += `<li class="alert alert-info m-2 p-1 my-fs-lg">${response.meals[0][measure]} ${response.meals[0][ingredient]}
+            </li>`
+        }
+    }
+
+
+    let tagsArr = response.meals[0].strTags == null ? null : response.meals[0].strTags.split(",");
+
+    if (tagsArr) {
+        for (let i = 0; i < tagsArr.length; i++) {
+            blackBox2 += `<li class="alert alert-danger m-2 p-1 my-fs-lg fw-medium">${tagsArr[i]}</li>`
+        }
+    }
+
+
+    blackBox += `<div class="row py-5">
+                <div class="col-md-4">
+                    <div class="overflow-hidden rounded-3">
+                        <img src="${response.meals[0].strMealThumb}" class="img-fluid" alt="">
+                    </div>
+
+                    <h1 class="h2">${response.meals[0].strMeal}</h1>
+                </div>
+                <div class="col-md-8">
+                    <h2>Instructions</h2>
+                    <p class="mb-2">${response.meals[0].strInstructions}</p>
+                    <ul class="list-unstyled fs-3 fw-bolder">
+                        <li>Area : <span>${response.meals[0].strArea}</span></li>
+                        <li>Category : <span>${response.meals[0].strCategory}</span></li>
+                        <li>Recipes :</li>
+                        <ul class="list-unstyled d-flex flex-wrap fw-normal py-2">
+                            ${blackBox1}
+                        </ul>
+                        <li>Tags:</li>
+                        <ul class="list-unstyled d-flex pt-3">
+                            ${blackBox2}
+                        </ul>
+                        <ul class="list-unstyled d-flex pt-3">
+                            <li><a href="${response.meals[0].strSource == null ? "#" : response.meals[0].strSource}"><button class="btn btn-success me-1">Source</button></a></li>
+                            <li><a href="${response.meals[0].strYoutube}"><button class="btn btn-danger">Youtube</button></a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>`
+
+    mealRecipe.html(blackBox)
 }
 async function getSearchedMealByFL(char = '') {
     char == '' ? char = 'a' : char;
@@ -180,14 +256,14 @@ async function getSearchedMealByFL(char = '') {
 
     if (fetchedMeals.ok) {
         if (response.meals != null && response.meals.hasOwnProperty('length')) {
-            
+
             length = response.meals.length <= 20 ? response.meals.length : 20;
-            
+
             for (let i = 0; i < length; i++) {
                 blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
+                <div class="card searched-card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                 <img src="${response.meals[i].strMealThumb
-                }" class="h-100" alt="">
+                    }" class="h-100" alt="">
                 <div class="layer position-absolute d-flex align-items-center">
                 <h3 class="text-black m-0">${response.meals[i].strMeal}</h3>
                 </div>
@@ -201,6 +277,14 @@ async function getSearchedMealByFL(char = '') {
         }
 
     }
+
+    $(".searched-card").on("click", (eventInfo) => {
+        getMealDetails($(eventInfo.currentTarget).attr("data-id"));
+        console.log($(eventInfo.currentTarget).attr("data-id"));
+
+        search.addClass("d-none");
+        mealRecipe.removeClass("d-none");
+    })
 
 }
 async function getSearchedMealByName(term = '') {
@@ -216,7 +300,7 @@ async function getSearchedMealByName(term = '') {
 
             for (let i = 0; i < length; i++) {
                 blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
+                <div class="card searched-card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
                     }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -235,6 +319,14 @@ async function getSearchedMealByName(term = '') {
 
     }
 
+    $(".searched-card").on("click", (eventInfo) => {
+        getMealDetails($(eventInfo.currentTarget).attr("data-id"));
+        console.log($(eventInfo.currentTarget).attr("data-id"));
+
+        search.addClass("d-none");
+        mealRecipe.removeClass("d-none");
+    })
+
 }
 async function getAreaMeals(areaName) {
     let fetchedCategories = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areaName}`);
@@ -245,7 +337,7 @@ async function getAreaMeals(areaName) {
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
+                <div class="card meal-card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
             }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -256,6 +348,14 @@ async function getAreaMeals(areaName) {
 
     }
     area.html(blackBox)
+
+    $(".meal-card").on("click", (eventInfo) => {
+        getMealDetails($(eventInfo.currentTarget).attr("data-id"));
+        console.log($(eventInfo.currentTarget).attr("data-id"));
+
+        area.addClass("d-none");
+        mealRecipe.removeClass("d-none");
+    })
 }
 async function getArea() {
     let fetchedCategories = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
@@ -301,9 +401,7 @@ async function getIngredients() {
     ingredients.html(blackBox)
 
     $(".ingredient-card").on("click", (eventInfo) => {
-        // getIngredientsMeals($(eventInfo.currentTarget).attr("data-name").lowerCase());
         getIngredientsMeals($(eventInfo.currentTarget).attr("data-name").toLowerCase().replaceAll(" ", "-"));
-        // console.log( $(eventInfo.currentTarget).attr("data-name"));
     })
 }
 async function getIngredientsMeals(ingredientName) {
@@ -315,7 +413,7 @@ async function getIngredientsMeals(ingredientName) {
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
+                <div class="card ingredient-card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
             }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -326,6 +424,14 @@ async function getIngredientsMeals(ingredientName) {
 
     }
     ingredients.html(blackBox)
+
+    $(".ingredient-card").on("click", (eventInfo) => {
+        getMealDetails($(eventInfo.currentTarget).attr("data-id"));
+        console.log($(eventInfo.currentTarget).attr("data-id"));
+
+        ingredients.addClass("d-none");
+        mealRecipe.removeClass("d-none");
+    })
 }
 async function getCategoryMeal(category) {
     let fetchedCategories = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
@@ -336,7 +442,7 @@ async function getCategoryMeal(category) {
     let blackBox = ``;
     for (let i = 0; i < length; i++) {
         blackBox += `<div class="col-md-3">
-                <div class="card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
+                <div class="card category-meal-card position-relative border-0 overflow-hidden" data-id="${response.meals[i].idMeal}">
                     <img src="${response.meals[i].strMealThumb
             }" class="h-100" alt="">
                     <div class="layer position-absolute d-flex align-items-center">
@@ -349,7 +455,13 @@ async function getCategoryMeal(category) {
     categories.html(blackBox)
 
 
+    $(".category-meal-card").on("click", (eventInfo) => {
+        getMealDetails($(eventInfo.currentTarget).attr("data-id"));
+        console.log($(eventInfo.currentTarget).attr("data-id"));
 
+        categories.addClass("d-none");
+        mealRecipe.removeClass("d-none");
+    })
 
 }
 async function getCategories() {
