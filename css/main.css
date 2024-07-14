@@ -256,4 +256,8 @@ aside i
 {
     padding: 0 4rem;
 }
+#search-section input
+{
+    color: white;
+}
 /* ================== End search Classes ================== */
