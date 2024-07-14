@@ -5,10 +5,14 @@ let area = $("#area-section")
 let ingredients = $("#ingredients-section")
 let searchedItems = $("#searched-items-section")
 
+let userName = $("#userName")
+let userEmail = $("#userEmail")
+let userPhone = $("#userPhone")
+let userAge = $("#userAge")
 let userPassword = $("#userPassword")
 let userRepassword = $("#userRepassword")
 let contactBtn = $(".contact-btn")
-
+console.log(contactBtn);
 // console.log(userName, userEmail, userPhone, userAge, userPassword, userRepassword);
 
 // Search input
@@ -75,10 +79,11 @@ $(".contact-us-input").on("input", (eventInfo) => {
 userRepassword.on("input", () => {
     if (userPassword.val() != userRepassword.val()) {
         userRepassword.next().removeClass("d-none")
+        contactBtn.addClass("disabled")
     }
-    else
-    {
+    else {
         userRepassword.next().addClass("d-none")
+        contactBtn.removeClass("disabled")
     }
 })
 
@@ -100,17 +105,20 @@ function validateInput(element) {
     }
 
     //validating the input
-    console.log(element.id);
-    console.log(element.value);
     if (regex[element.id].test(element.value)) {
 
         $(element).next().addClass("d-none")
+        if (userName.val() == "" || userEmail.val() == "" || userPhone.val() == "" || userAge.val() == "" || userPassword.val() == "" || userRepassword.val() == "") {
+            contactBtn.addClass("disabled")
+        }
+        else {
+            contactBtn.removeClass("disabled")
+        }
         return true;
     }
     else {
-
         $(element).next().removeClass("d-none")
-
+        contactBtn.addClass("disabled")
         return false;
     }
 }
